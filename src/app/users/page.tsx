@@ -1,8 +1,12 @@
 import { db } from "@/db/client";
-import { insertUserSchema, usersTable } from "@/db/schema/user";
-import { z } from "zod";
+import { usersTable } from "@/db/schema/user";
+import UserTable from "./user-table";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import enUS from "@/lang/en-US";
 
 export default async function Users() {
+  const t = enUS;
   const users = await db.select().from(usersTable);
 
   // const newUser = {
@@ -16,7 +20,21 @@ export default async function Users() {
 
   return (
     <main className="">
-      <pre>{JSON.stringify(users, null, 2)}</pre>
+      <div className="mt-3 w-[80vw]">
+        <div className="flex justify-end space-x-3">
+          <Button>
+            <Link
+              href={{
+                pathname: `/users/undefined`,
+              }}
+            >
+              {t.user.create}
+            </Link>
+          </Button>
+        </div>
+        <UserTable userData={users} />
+      </div>
+      {/* <pre>{JSON.stringify(users, null, 2)}</pre> */}
     </main>
   );
 }

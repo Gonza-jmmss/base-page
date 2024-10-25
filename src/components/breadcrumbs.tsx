@@ -14,6 +14,7 @@ import { Fragment } from "react";
 export default function Breadcrumbs() {
   const segments = useSelectedLayoutSegments();
   const breadcrumbElements = ["home"].concat(segments);
+  console.log("segments", segments.map((x) => `/${x}`))
 
   return (
     <div className="w-full mt-3">

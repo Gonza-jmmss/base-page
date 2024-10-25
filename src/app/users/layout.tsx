@@ -6,7 +6,7 @@ export default function UserLayout({
   return (
     <main className="flex h-full w-full justify-center">
       <div>
-        <span>Users</span>
+        {/* <span>Users</span> */}
         {children}
       </div>
     </main>
